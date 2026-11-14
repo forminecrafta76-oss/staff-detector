@@ -62,7 +62,6 @@ tasks {
         options.encoding = "UTF-8"
         options.release = 21
         options.compilerArgs.add("-Xlint:deprecation")
-        options.compilerArgs.add("-Xlint:uncheck
-ed")
+        options.compilerArgs.add("-Xlint:unchecked")
     }
 }

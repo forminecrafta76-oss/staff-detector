@@ -2,67 +2,6 @@ plugins {
     alias(libs.plugins.fabric.loom)
 }
 
-val archivesBaseName = providers.gradleProperty("archives_base_name").get()
-val mavenGroup = providers.gradleProperty("maven_group").get()
-
-base {
-    archivesName = archivesBaseName
-    version = libs.versions.mod.version.get()
-    group = mavenGroup
-}
-
-repositories {
-    maven {
-        name = "meteor-maven"
-        url = uri("https://maven.meteordev.org/releases")
-    }
-    maven {
-        name = "meteor-maven-snapshots"
-        url = uri("https://maven.meteordev.org/snapshots")
-    }
-}
-
-dependencies {
-    // Fabric
-    minecraft(libs.minecraft)
-    implementation(libs.fabric.loader)
-
-    // Meteor
-    implementation(libs.meteor.client)
-}
-
-ersion" to toMinecraftCompat(libs.versions.minecraft.get()),
-            "jdk_version" to libs.versions.jdk.get(),
-        )
-
-        inputs.properties(propertyMap)
-        filesMatching("fabric.mod.json") {
-            expand(propertyMap)
-        }
-    }
-
-    jar {
-        inputs.property("archivesName", archivesBaseName)
-        val licenseName = "LICENSE_$archivesBaseName"
-
-        from("LICENSE") {
-            rename("LICENSE", licenseName)
-        }
-    }
-
-    withType<JavaCompile>().configureEach {
-        options.compilerArgs.addAll(
-            listOf(
-                "-Xlint:deprecation",
-                "-Xlint:unchecked"
-            )
-        )
-    }
-}
-plugins {
-    alias(libs.plugins.fabric.loom)
-}
-
 base {
     archivesName = properties["archives_base_name"] as String
     version = libs.versions.mod.version.get()
@@ -123,6 +62,7 @@ tasks {
         options.encoding = "UTF-8"
         options.release = 21
         options.compilerArgs.add("-Xlint:deprecation")
-        options.compilerArgs.add("-Xlint:unchecked")
+        options.compilerArgs.add("-Xlint:uncheck
+ed")
     }
 }
